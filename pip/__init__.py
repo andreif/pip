@@ -204,7 +204,8 @@ def call_subprocess(cmd, show_stdout=True,
                     filter_stdout, cwd,
                     raise_on_returncode,
                     command_level, command_desc,
-                    extra_environ]
+                    extra_environ], os.getcwd()
+
     if command_desc is None:
         cmd_parts = []
         for part in cmd:
