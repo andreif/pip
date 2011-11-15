@@ -103,10 +103,13 @@ class Git(VersionControl):
             rev_options = ['origin/master']
             rev_display = ''
         if self.check_destination(dest, url, rev_options, rev_display):
-            logger.notify('Cloning %s%s to %s' % (url, rev_display, display_path(dest)))
-            call_subprocess([self.cmd, 'clone', '-q', url, dest])
             print '---------->',dest
             import os
+
+            os.system("pwd")
+            logger.notify('Cloning %s%s to %s' % (url, rev_display, display_path(dest)))
+            call_subprocess([self.cmd, 'clone', '-q', url, dest])
+
             os.system("pwd")
             os.system("ls -la %s" % dest)
             if rev:
@@ -203,6 +206,7 @@ class Git(VersionControl):
         return remote_branches + local_branches
 
     def _get_revision_from_rev_parse(self, name, location):
+        print [self.cmd, 'rev-parse', name], location
         return call_subprocess([self.cmd, 'rev-parse', name],
                                show_stdout=False, cwd=location)
 
