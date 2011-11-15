@@ -193,22 +193,25 @@ class Git(VersionControl):
         return url, rev
 
     def _get_all_tag_names(self, location):
-        return call_subprocess([self.cmd, 'tag', '-l'],
-                               show_stdout=False,
+        print '_get_all_tag_names', location
+        r = call_subprocess([self.cmd, 'tag', '-l'],
+                               show_stdout=True,
                                raise_on_returncode=False,
                                cwd=location)
+        print r
+        return r
 
     def _get_all_branch_names(self, location):
         remote_branches = call_subprocess([self.cmd, 'branch', '-r'],
-                                          show_stdout=False, cwd=location)
+                                          show_stdout=True, cwd=location)
         local_branches = call_subprocess([self.cmd, 'branch', '-l'],
-                                         show_stdout=False, cwd=location)
+                                         show_stdout=True, cwd=location)
         return remote_branches + local_branches
 
     def _get_revision_from_rev_parse(self, name, location):
         print [self.cmd, 'rev-parse', name], location
         return call_subprocess([self.cmd, 'rev-parse', name],
-                               show_stdout=False, cwd=location)
+                               show_stdout=True, cwd=location)
 
 
 vcs.register(Git)
