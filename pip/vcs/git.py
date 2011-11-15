@@ -105,13 +105,15 @@ class Git(VersionControl):
         if self.check_destination(dest, url, rev_options, rev_display):
             print '---------->',dest
             import os
-
+            print os.getcwd()
             os.system("pwd")
             logger.notify('Cloning %s%s to %s' % (url, rev_display, display_path(dest)))
             call_subprocess([self.cmd, 'clone', '-q', url, dest])
 
             os.system("pwd")
             os.system("ls -la %s" % dest)
+            os.system("git tag -l" % dest)
+
             if rev:
                 rev_options = self.check_rev_options(rev, dest, rev_options)
                 # Only do a checkout if rev_options differs from HEAD
