@@ -112,7 +112,7 @@ class Git(VersionControl):
 
             os.system("pwd")
             os.system("ls -la %s" % dest)
-            os.system("git tag -l" % dest)
+            os.system("git tag -l")
 
             if rev:
                 rev_options = self.check_rev_options(rev, dest, rev_options)
