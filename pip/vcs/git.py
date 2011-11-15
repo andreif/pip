@@ -193,12 +193,12 @@ class Git(VersionControl):
         return url, rev
 
     def _get_all_tag_names(self, location):
-        print '_get_all_tag_names', location
+        print '_get_all_tag_names', location, self.cmd
         r = call_subprocess([self.cmd, 'tag', '-l'],
                                show_stdout=True,
                                raise_on_returncode=False,
                                cwd=location)
-        print r
+        print '===>',r
         return r
 
     def _get_all_branch_names(self, location):
