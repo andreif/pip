@@ -103,14 +103,12 @@ class Git(VersionControl):
             rev_options = ['origin/master']
             rev_display = ''
         if self.check_destination(dest, url, rev_options, rev_display):
-            print '---------->',dest
             import os
             print os.getcwd()
             logger.notify('Cloning %s%s to %s' % (url, rev_display, display_path(dest)))
             call_subprocess([self.cmd, 'clone', '-q', url, dest])
             print '---------->',dest
             os.system("ls -la %s" % dest)
-            call_subprocess(["pwd; ls; git status; git tag -l"], cwd=dest)
 
             if rev:
                 rev_options = self.check_rev_options(rev, dest, rev_options)

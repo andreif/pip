@@ -200,6 +200,11 @@ def call_subprocess(cmd, show_stdout=True,
                     raise_on_returncode=True,
                     command_level=logger.DEBUG, command_desc=None,
                     extra_environ=None):
+    print 'call_subprocess', [cmd, show_stdout,
+                    filter_stdout, cwd,
+                    raise_on_returncode,
+                    command_level, command_desc,
+                    extra_environ]
     if command_desc is None:
         cmd_parts = []
         for part in cmd:
