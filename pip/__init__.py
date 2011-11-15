@@ -207,7 +207,7 @@ def call_subprocess(cmd, show_stdout=True,
                 part = '"%s"' % part.replace('"', '\\"')
             cmd_parts.append(part)
         command_desc = ' '.join(cmd_parts)
-    if show_stdout:
+    if show_stdout or True:
         stdout = None
     else:
         stdout = subprocess.PIPE
