@@ -221,10 +221,15 @@ def call_subprocess(cmd, show_stdout=True,
     env = os.environ.copy()
     if extra_environ:
         env.update(extra_environ)
+    if cwd:
+        cd = os.getcwd()
+        print '1===>',cd,cwd
+        os.chdir(cwd)
+        print os.getcwd()
     try:
         proc = subprocess.Popen(
             cmd, stderr=subprocess.STDOUT, stdin=None, stdout=stdout,
-            cwd=cwd, env=env)
+            cwd=None, env=env)
     except Exception:
         e = sys.exc_info()[1]
         logger.fatal(
@@ -252,6 +257,10 @@ def call_subprocess(cmd, show_stdout=True,
         returned_stdout, returned_stderr = proc.communicate()
         all_output = [returned_stdout or '']
     proc.wait()
+    if cwd:
+        print '2===>',os.getcwd()
+        os.chdir(cd)
+        print os.getcwd()
     if proc.returncode:
         if raise_on_returncode:
             if all_output:
