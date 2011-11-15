@@ -105,8 +105,9 @@ class Git(VersionControl):
         if self.check_destination(dest, url, rev_options, rev_display):
             logger.notify('Cloning %s%s to %s' % (url, rev_display, display_path(dest)))
             call_subprocess([self.cmd, 'clone', '-q', url, dest])
-            print dest
+            print '---------->',dest
             import os
+            os.system("pwd")
             os.system("ls -la %s" % dest)
             if rev:
                 rev_options = self.check_rev_options(rev, dest, rev_options)
