@@ -109,7 +109,7 @@ class Git(VersionControl):
             call_subprocess([self.cmd, 'clone', '-q', url, dest])
             print '---------->',dest
             os.system("ls -la %s" % dest)
-
+            os.system('pwd; cd %s; pwd; git status; git tags -l' % dest)
             if rev:
                 rev_options = self.check_rev_options(rev, dest, rev_options)
                 # Only do a checkout if rev_options differs from HEAD
