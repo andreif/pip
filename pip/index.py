@@ -300,8 +300,8 @@ class PackageFinder(object):
             if page is None:
                 continue
             done.append(page)
-            for link in page.rel_links():
-                pending_queue.put(link)
+            #for link in page.rel_links():
+            #    pending_queue.put(link)
 
     _egg_fragment_re = re.compile(r'#egg=([^&]*)')
     _egg_info_re = re.compile(r'([a-z0-9_.]+)-([a-z0-9_.-]+)', re.I)
